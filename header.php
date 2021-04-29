@@ -23,6 +23,8 @@
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
 <div id="page" class="site">
+
+<div class='container'> 
 	<a class="skip-link screen-reader-text" href="#primary"><?php esc_html_e( 'Skip to content', 'the-spacex-missions' ); ?></a>
 
 	<header id="masthead" class="site-header">

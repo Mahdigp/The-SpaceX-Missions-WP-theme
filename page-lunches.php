@@ -40,11 +40,10 @@ foreach ($result as $values) {
 	$time=$values->launch_date_unix;
 
 	$missionName=$values->mission_name;
-    $nationality=$values->rocket->second_stage->payloads->nationality;
+    $nationality=$values->rocket->second_stage->payloads[0]->nationality;
     
 	echo $values->mission_name . ',';
-	echo $nationality . '</br>';
-
+    echo $nationality;
 
 /*
 	$new_post = array(

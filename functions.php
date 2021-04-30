@@ -70,49 +70,7 @@ function lunches_post_type() {
 add_action( 'init', 'lunches_post_type', 0 );
 
 
-// 	#####  Lunches Category Of SpaceX theme  #####
-function Lunches_category_taxonomy() {
-
-	$labels = array(
-		'name'                       => _x( 'Payload Type', 'Taxonomy General Name', 'text_domain' ),
-		'singular_name'              => _x( 'Payload Type', 'Taxonomy Singular Name', 'text_domain' ),
-		'menu_name'                  => __( 'Payload Type', 'text_domain' ),
-		'all_items'                  => __( 'All', 'text_domain' ),
-		'parent_item'                => __( 'Parent', 'text_domain' ),
-		'parent_item_colon'          => __( 'Payload Type:', 'text_domain' ),
-		'new_item_name'              => __( 'Add', 'text_domain' ),
-		'add_new_item'               => __( 'New', 'text_domain' ),
-		'edit_item'                  => __( 'Edite', 'text_domain' ),
-		'update_item'                => __( 'Update', 'text_domain' ),
-		'view_item'                  => __( 'View', 'text_domain' ),
-		'separate_items_with_commas' => __( 'Spreate with comma', 'text_domain' ),
-		'add_or_remove_items'        => __( 'Add or Remove', 'text_domain' ),
-		'search_items'               => __( 'Search', 'text_domain' ),
-		'not_found'                  => __( 'Not found', 'text_domain' ),
-		'no_terms'                   => __( 'No Items', 'text_domain' ),
-		'items_list'                 => __( 'Items list', 'text_domain' ),
-		'items_list_navigation'      => __( 'Item menu', 'text_domain' ),
-	);
-	$args = array(
-		'labels'                     => $labels,
-		'hierarchical'               => true,
-		'public'                     => true,
-		'show_ui'                    => true,
-		'show_admin_column'          => true,
-		'show_in_nav_menus'          => true,
-		'show_tagcloud'              => true,
-	);
-	register_taxonomy( 'lunches_category', array( 'lunches_spacex' ), $args );
-
-}
-
-
-
-
-
-
-
-/* End of lunchers post type and taxonomy */
+/* End of lunchers post type   */
 
 
 
@@ -131,9 +89,9 @@ if( function_exists('acf_add_local_field_group') ):
 				'type' => 'text',
 			),
 			array (
-				'key' => 'customer',
-				'label' => 'Customer',
-				'name' => 'customer',
+				'key' => 'details',
+				'label' => 'Details',
+				'name' => 'details',
 				'type' => 'text',
 			),
 			array (
@@ -144,9 +102,16 @@ if( function_exists('acf_add_local_field_group') ):
 			)
 			,
 			array (
-				'key' => 'orbit',
-				'label' => 'Orbit',
-				'name' => 'orbit',
+				'key' => 'picture',
+				'label' => 'Picture Url',
+				'name' => 'picture',
+				'type' => 'text',
+			)
+			,
+			array (
+				'key' => 'payloadtype',
+				'label' => 'Payload type',
+				'name' => 'payloadtype',
 				'type' => 'text',
 			)
 			,
@@ -155,6 +120,27 @@ if( function_exists('acf_add_local_field_group') ):
 				'label' => 'Launch Success',
 				'name' => 'launch_success',
 				'type' => 'true_false',
+	
+			),
+			array (
+				'key' => 'article_link',
+				'label' => 'Article Link',
+				'name' => 'article_link',
+				'type' => 'text',
+	
+			),
+			array (
+				'key' => 'video_link',
+				'label' => 'Video link',
+				'name' => 'video_link',
+				'type' => 'text',
+	
+			),
+			array (
+				'key' => 'tdate',
+				'label' => 'Time and Date',
+				'name' => 'tdate',
+				'type' => 'text',
 	
 			)
 		),
@@ -214,8 +200,60 @@ if( function_exists('acf_add_local_field_group') ):
 			//assuming you have defined template on your-template-filename.php
 			update_post_meta($homepage_id, '_wp_page_template', 'page-lunches.php');
 		}
+
+
+		$result= wp_remote_retrieve_body(wp_remote_get('https://api.spacexdata.com/v3/launches'));
+		$result=json_decode($result);
+		
+		foreach ($result as $values) {
+			$date=$values->launch_date_unix;
+			$tdate=date('m/d/Y h:i:s a',$date);
+			$missionName=$values->mission_name;
+			$nationality=$values->rocket->second_stage->payloads[0]->nationality;
+			$payload_type=$values->rocket->second_stage->payloads[0]->payload_type;
+			$manufacturer=$values->rocket->second_stage->payloads[0]->manufacturer;
+			$launch_success=$values->launch_success;
+			$details=$values->details;
+			$picture=$values->links->mission_patch_small;
+			$article_link=$values->links->article_link;
+			$video_link=$values->links->video_link;
+		
+		
+				
+			$new_post = array(
+				'ID' => '',
+				'post_type' => 'lunches_spacex', // Custom Post Type Slug
+				'post_status' => 'publish',
+				'post_title' => $missionName,
+				);
+		
+		
+			
+		
+			$post_id = wp_insert_post($new_post);
+			update_field('nationality', $nationality ,$post_id);
+			update_field('payloadtype', $payload_type ,$post_id);
+			update_field('details', $details ,$post_id);
+			update_field('manufacturer', $manufacturer ,$post_id);
+			update_field('picture', $picture ,$post_id);
+			update_field('launch_success', $launch_success ,$post_id);
+			update_field('article_link', $article_link ,$post_id);
+			update_field('video_link', $video_link ,$post_id);
+			update_field('tdate', $tdate ,$post_id);
+		
+		
+		
+		}
+		
+		
+	
+
+
 	
 	}
+
+
+
 }
 
 

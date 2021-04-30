@@ -172,7 +172,52 @@ if( function_exists('acf_add_local_field_group') ):
 	endif;
 
 
-add_action( 'init', 'Lunches_category_taxonomy', 0 );
+	add_action('after_switch_theme', 'setup_theme_options');
+
+	function setup_theme_options () {
+	  if(get_option('first_theme_activation') === false){
+		// Set a flag if the theme activation happened
+		add_option('first_theme_activation', true, '', false);
+
+
+
+		if(get_option('page_on_front')=='0' && get_option('show_on_front')=='posts'){
+			   // Create History Page
+			   $homepage = array(
+				   'post_type'    => 'page',
+				   'post_title'    => 'History',
+				   'post_content'  => '',
+				   'post_status'   => 'publish',
+				   'meta_key' => '_wp_page_template',
+				   'meta_value' => 'page-history.php'
+			   ); 
+			   // Insert the post into the database
+			   $homepage_id =  wp_insert_post( $homepage );
+			   //set the page template 
+			   //assuming you have defined template on your-template-filename.php
+			   update_post_meta($homepage_id, '_wp_page_template', 'page-history.php');
+		   }
+	   
+		if(get_option('page_on_front')=='0' && get_option('show_on_front')=='posts'){
+			// Create Lunches Page
+			$homepage = array(
+				'post_type'    => 'page',
+				'post_title'    => 'Lunches',
+				'post_content'  => '',
+				'post_status'   => 'publish',
+				'meta_key' => '_wp_page_template',
+				'meta_value' => 'page-lunches.php'
+			); 
+			// Insert the post into the database
+			$homepage_id =  wp_insert_post( $homepage );
+			//set the page template 
+			//assuming you have defined template on your-template-filename.php
+			update_post_meta($homepage_id, '_wp_page_template', 'page-lunches.php');
+		}
+	
+	}
+}
+
 
 
 if ( ! function_exists( 'the_spacex_missions_setup' ) ) :

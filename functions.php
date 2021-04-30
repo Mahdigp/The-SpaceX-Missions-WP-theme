@@ -12,6 +12,169 @@ if ( ! defined( '_S_VERSION' ) ) {
 	define( '_S_VERSION', '1.0.0' );
 }
 
+
+// ##### Lunches Post tyoe of  SpaceX theme #####
+function lunches_post_type() {
+
+	$labels = array(
+		'name'                  => _x( 'Lunches', 'Post Type General Name', 'lunch_domain' ),
+		'singular_name'         => _x( 'Lunche', 'Post Type Singular Name', 'lunch_domain' ),
+		'menu_name'             => __( 'Lunches', 'lunch_domain' ),
+		'name_admin_bar'        => __( 'Lunches', 'lunch_domain' ),
+		'archives'              => __( 'Lunches Archive', 'lunch_domain' ),
+		'attributes'            => __( 'Attributes', 'lunch_domain' ),
+		'parent_item_colon'     => __( 'Parent', 'lunch_domain' ),
+		'all_items'             => __( 'All Lunches', 'lunch_domain' ),
+		'add_new_item'          => __( 'Add new', 'lunch_domain' ),
+		'add_new'               => __( 'Add new', 'lunch_domain' ),
+		'new_item'              => __( 'New', 'lunch_domain' ),
+		'edit_item'             => __( 'Edit', 'lunch_domain' ),
+		'update_item'           => __( 'Update', 'lunch_domain' ),
+		'view_item'             => __( 'View', 'lunch_domain' ),
+		'view_items'            => __( 'View', 'lunch_domain' ),
+		'search_items'          => __( 'Seach', 'lunch_domain' ),
+		'not_found'             => __( 'Not Found', 'lunch_domain' ),
+		'not_found_in_trash'    => __( 'Not Found in Trash', 'lunch_domain' ),
+		'featured_image'        => __( 'Feature Image', 'lunch_domain' ),
+		'set_featured_image'    => __( 'Set Feature Image', 'lunch_domain' ),
+		'remove_featured_image' => __( 'Remove Feature Image', 'lunch_domain' ),
+		'use_featured_image'    => __( 'Use as Feature Image', 'lunch_domain' ),
+		'insert_into_item'      => __( 'Insert into', 'lunch_domain' ),
+		'uploaded_to_this_item' => __( 'Uploade into', 'lunch_domain' ),
+		'items_list'            => __( 'Items list', 'lunch_domain' ),
+		'items_list_navigation' => __( 'Item smenu', 'lunch_domain' ),
+		'filter_items_list'     => __( 'Filter Items ', 'lunch_domain' ),
+	);
+	$args = array(
+		'label'                 => __( 'Lunch', 'lunch_domain' ),
+		'description'           => __( 'Lunches of SpaceX ', 'lunch_domain' ),
+		'labels'                => $labels,
+		'supports'              => array( 'title', 'editor', 'thumbnail', 'comments', 'revisions', 'custom-fields', 'post-formats' ),
+		'taxonomies'            => array( 'lunch_category', 'lunch_post_tag' ),
+		'hierarchical'          => false,
+		'public'                => true,
+		'show_ui'               => true,
+		'show_in_menu'          => true,
+		'menu_position'         => 5,
+		'show_in_admin_bar'     => true,
+		'show_in_nav_menus'     => true,
+		'can_export'            => true,
+		'has_archive'           => true,
+		'exclude_from_search'   => false,
+		'publicly_queryable'    => true,
+		'capability_type'       => 'page',
+	);
+	register_post_type( 'lunches_spacex', $args );
+
+}
+add_action( 'init', 'lunches_post_type', 0 );
+
+
+// 	#####  Lunches Category Of SpaceX theme  #####
+function Lunches_category_taxonomy() {
+
+	$labels = array(
+		'name'                       => _x( 'Payload Type', 'Taxonomy General Name', 'text_domain' ),
+		'singular_name'              => _x( 'Payload Type', 'Taxonomy Singular Name', 'text_domain' ),
+		'menu_name'                  => __( 'Payload Type', 'text_domain' ),
+		'all_items'                  => __( 'All', 'text_domain' ),
+		'parent_item'                => __( 'Parent', 'text_domain' ),
+		'parent_item_colon'          => __( 'Payload Type:', 'text_domain' ),
+		'new_item_name'              => __( 'Add', 'text_domain' ),
+		'add_new_item'               => __( 'New', 'text_domain' ),
+		'edit_item'                  => __( 'Edite', 'text_domain' ),
+		'update_item'                => __( 'Update', 'text_domain' ),
+		'view_item'                  => __( 'View', 'text_domain' ),
+		'separate_items_with_commas' => __( 'Spreate with comma', 'text_domain' ),
+		'add_or_remove_items'        => __( 'Add or Remove', 'text_domain' ),
+		'search_items'               => __( 'Search', 'text_domain' ),
+		'not_found'                  => __( 'Not found', 'text_domain' ),
+		'no_terms'                   => __( 'No Items', 'text_domain' ),
+		'items_list'                 => __( 'Items list', 'text_domain' ),
+		'items_list_navigation'      => __( 'Item menu', 'text_domain' ),
+	);
+	$args = array(
+		'labels'                     => $labels,
+		'hierarchical'               => true,
+		'public'                     => true,
+		'show_ui'                    => true,
+		'show_admin_column'          => true,
+		'show_in_nav_menus'          => true,
+		'show_tagcloud'              => true,
+	);
+	register_taxonomy( 'lunches_category', array( 'lunches_spacex' ), $args );
+
+}
+
+
+
+
+
+
+
+/* End of lunchers post type and taxonomy */
+
+
+
+/* register custom feild */
+
+if( function_exists('acf_add_local_field_group') ):
+
+	acf_add_local_field_group(array(
+		'key' => 'Luncher_Properties',
+		'title' => 'Luncher Properties',
+		'fields' => array (
+			array (
+				'key' => 'nationality',
+				'label' => 'Nationality',
+				'name' => 'nationality',
+				'type' => 'text',
+			),
+			array (
+				'key' => 'customer',
+				'label' => 'Customer',
+				'name' => 'customer',
+				'type' => 'text',
+			),
+			array (
+				'key' => 'manufacturer',
+				'label' => 'Manufacturer',
+				'name' => 'manufacturer',
+				'type' => 'text',
+			)
+			,
+			array (
+				'key' => 'orbit',
+				'label' => 'Orbit',
+				'name' => 'orbit',
+				'type' => 'text',
+			)
+			,
+			array (
+				'key' => 'launch_success',
+				'label' => 'Launch Success',
+				'name' => 'launch_success',
+				'type' => 'true_false',
+	
+			)
+		),
+		'location' => array (
+			array (
+				array (
+					'param' => 'post_type',
+					'operator' => '==',
+					'value' => 'lunches_spacex',
+				),
+			),
+		),
+	));
+	
+	endif;
+
+
+add_action( 'init', 'Lunches_category_taxonomy', 0 );
+
+
 if ( ! function_exists( 'the_spacex_missions_setup' ) ) :
 	/**
 	 * Sets up theme defaults and registers support for various WordPress features.
@@ -116,25 +279,7 @@ function the_spacex_missions_content_width() {
 }
 add_action( 'after_setup_theme', 'the_spacex_missions_content_width', 0 );
 
-/**
- * Register widget area.
- *
- * @link https://developer.wordpress.org/themes/functionality/sidebars/#registering-a-sidebar
- */
-function the_spacex_missions_widgets_init() {
-	register_sidebar(
-		array(
-			'name'          => esc_html__( 'Sidebar', 'the-spacex-missions' ),
-			'id'            => 'sidebar-1',
-			'description'   => esc_html__( 'Add widgets here.', 'the-spacex-missions' ),
-			'before_widget' => '<section id="%1$s" class="widget %2$s">',
-			'after_widget'  => '</section>',
-			'before_title'  => '<h2 class="widget-title">',
-			'after_title'   => '</h2>',
-		)
-	);
-}
-add_action( 'widgets_init', 'the_spacex_missions_widgets_init' );
+
 
 /**
  * Enqueue scripts and styles.

@@ -91,7 +91,7 @@ body {
   body h1, body h2, body h3, body h4, body h5, body h6 {
     font-family: "open sans", tahoma, arial;
     font-weight: bold; }
-  body p, body span, body b, body a, body label, body input {
+  body p, body span, body b, body a, body label, body input, body div {
     font-family: "open sans", tahoma, arial; }
   body a {
     text-decoration: none; }
@@ -99,6 +99,21 @@ body {
     width: 1170px;
     margin: auto;
     display: block; }
+  body header #primary-menu ul {
+    display: flex;
+    list-style: none;
+    flex-direction: row;
+    padding: 0;
+    margin: 0; }
+    body header #primary-menu ul li {
+      padding: 5px 15px;
+      margin: 5px;
+      border-radius: 5px;
+      background: #00bd94; }
+      body header #primary-menu ul li:first-of-type {
+        margin-left: 0; }
+      body header #primary-menu ul li a {
+        color: #fff; }
   body header .site-branding {
     border-radius: 10px;
     background: #0F2027;
@@ -108,5 +123,12 @@ body {
     padding: 10px; }
     body header .site-branding * {
       color: #fff; }
+  body .site-info {
+    background: #ccc;
+    padding: 10px;
+    color: #3f3f3f;
+    border-radius: 10px; }
+    body .site-info * {
+      color: #3f3f3f; }
 
 /*# sourceMappingURL=main.css.map */

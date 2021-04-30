@@ -129,7 +129,7 @@ body
     h1,h2,h3,h4,h5,h6 
         font-family: 'open sans',tahoma,arial
         font-weight: bold
-    p,span,b,a,label,input 
+    p,span,b,a,label,input, div
         font-family: 'open sans',tahoma,arial
     a 
         text-decoration: none
@@ -145,6 +145,22 @@ body
 
     // ------- Header ------- // 
     header 
+        #primary-menu 
+            ul
+                display: flex
+                list-style: none
+                flex-direction: row
+                padding: 0
+                margin: 0
+                li
+                    padding: 5px 15px
+                    margin: 5px
+                    border-radius: 5px
+                    background: #00bd94
+                    &:first-of-type
+                        margin-left: 0
+                    a
+                        color: #fff
         .site-branding
             border-radius: 10px
             background: #0F2027 
@@ -154,3 +170,11 @@ body
             padding: 10px
             * 
                 color: #fff
+    // ------- Footer ------- //     
+    .site-info 
+        background: #ccc
+        padding: 10px
+        color: #3f3f3f
+        border-radius: 10px
+        * 
+            color: #3f3f3f

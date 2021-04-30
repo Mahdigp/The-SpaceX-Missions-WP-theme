@@ -10,7 +10,7 @@
  */
 
 ?>
-</div>
+
 	<footer id="colophon" class="site-footer">
 		<div class="site-info">
 			<a href="<?php echo esc_url( __( 'https://wordpress.org/', 'the-spacex-missions' ) ); ?>">
@@ -26,6 +26,7 @@
 				?>
 		</div><!-- .site-info -->
 	</footer><!-- #colophon -->
+	</div> <!-- container -->
 </div><!-- #page -->
 
 <?php wp_footer(); ?>

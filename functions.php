@@ -13,6 +13,7 @@ if ( ! defined( '_S_VERSION' ) ) {
 }
 
 
+
 // ##### Lunches Post tyoe of  SpaceX theme #####
 function lunches_post_type() {
 
@@ -405,4 +406,9 @@ require get_template_directory() . '/inc/customizer.php';
 if ( defined( 'JETPACK__VERSION' ) ) {
 	require get_template_directory() . '/inc/jetpack.php';
 }
+add_action( 'admin_notices', 'my_theme_dependencies' );
 
+function my_theme_dependencies() {
+  if( ! function_exists('plugin_function') )
+    echo '<div class="notice"><p>' . __( ' The Theme needs Advand Custom Field to function', 'my-theme' ) . '</p></div>';
+}

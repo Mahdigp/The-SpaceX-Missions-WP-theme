@@ -99,6 +99,9 @@ body {
     width: 1170px;
     margin: auto;
     display: block; }
+  body .row {
+    display: flex;
+    flex-wrap: wrap; }
   body header {
     margin-top: 10px; }
     body header #primary-menu ul {

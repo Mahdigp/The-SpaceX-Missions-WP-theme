@@ -23,10 +23,29 @@ get_header();
         
         
             <div class="entry-content">
+                <div class="row">
                 <?php
-          
-
-                ?>
+          $result= wp_remote_retrieve_body(wp_remote_get('https://api.spacexdata.com/v3/history'));
+          $result=json_decode($result);
+          foreach ($result as $values) {
+              ?>
+              <div class="history-mission">
+            <?php 
+            $time=$values->event_date_unix;
+            echo '<b>' . date('Y-m-d', $time) . ' </b>';
+        
+            echo '<i>' . date('H:i:s', $time) . '</i> ';
+        
+            echo '<a class="more" href=" ' . ($values->links->article) . '">More Info</a> ';
+        
+            echo $values->details . '</br>';
+            
+            echo '</div>';
+          }
+               
+ 
+    
+                ?> </div> <!-- .row -->
             </div><!-- .entry-content -->
         
             <?php if ( get_edit_post_link() ) : ?>

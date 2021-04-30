@@ -32,17 +32,24 @@ get_header();
     ) );  
 ?>
 
-<?php while (have_posts()) : the_post(); ?>
-<div class="col-3">
+
+<div class="col-10">
 <div class="lunch">
         <h3><a href="<?php the_permalink() ?>"><?php the_title(); ?></a></h3>
-        <span class="tdate"><?php  the_field('tdate'); ?> </span>
-        <span class="nationality"><?php  the_field('nationality'); ?> </span>
+        <span class="tdate">Time and date: <?php  the_field('tdate'); ?> </span>
+        <span class="nationality">Nationality: <?php  the_field('nationality'); ?> </span>
+        <span>Manufacturer: <?php  the_field('manufacturer'); ?>  </span>
+        <span> <a  target="_blank" href=" <?php  the_field('picture'); ?> "> See Photo </a> </span>
+        <span>Payload type: <?php  the_field('payloadtype'); ?> </span>
+        <span> <a  target="_blank" href=" <?php  the_field('article_link'); ?> "> Read Article </a> </span>
+        <span> <a  target="_blank" href=" <?php  the_field('video_link'); ?> "> Watch Video </a> </span>
+
         <p> <?php  the_field('details'); ?></p>
+    
   
 
-    <a class="more" href="<?php the_permalink() ?>">Read more</a> </div>        </div>     
-<?php endwhile;?>
+   </div>        </div>     
+
 
 
 

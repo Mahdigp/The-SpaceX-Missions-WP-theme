@@ -25,22 +25,22 @@ get_header();
             <div class="entry-content">
                 <div class="row">
                 <?php
-          $result= wp_remote_retrieve_body(wp_remote_get('https://api.spacexdata.com/v3/history'));
-          $result=json_decode($result);
-          foreach ($result as $values) {
+          $resulth= wp_remote_retrieve_body(wp_remote_get('https://api.spacexdata.com/v3/history'));
+          $resulth=json_decode($resulth);
+          foreach ($resulth as $valuesh) {
               ?>
               <div class="col-5"><div class="history-mission"> 
             <?php 
-            $time=$values->event_date_unix;
-            echo '<h2>' . $values->title . '</h2>';
+            $time=$valuesh->event_date_unix;
+            echo '<h2>' . $valuesh->title . '</h2>';
 
             echo '<span class="date">' . date('Y-m-d', $time) . ' </span>';
         
             echo '<span class="time">' . date('H:i:s', $time) . '</span> ';
         
         
-            echo '<p>' . $values->details . '</p>';
-            echo '<a target="blank" class="more" href=" ' . ($values->links->article) . '">More Info</a> ';
+            echo '<p>' . $valuesh->details . '</p>';
+            echo '<a target="blank" class="more" href=" ' . ($valuesh->links->article) . '">More Info</a> ';
 
             echo '</div></div>';
           }

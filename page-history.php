@@ -29,18 +29,20 @@ get_header();
           $result=json_decode($result);
           foreach ($result as $values) {
               ?>
-              <div class="history-mission">
+              <div class="col-5"><div class="history-mission"> 
             <?php 
             $time=$values->event_date_unix;
-            echo '<b>' . date('Y-m-d', $time) . ' </b>';
+            echo '<h2>' . $values->title . '</h2>';
+
+            echo '<span class="date">' . date('Y-m-d', $time) . ' </span>';
         
-            echo '<i>' . date('H:i:s', $time) . '</i> ';
+            echo '<span class="time">' . date('H:i:s', $time) . '</span> ';
         
-            echo '<a class="more" href=" ' . ($values->links->article) . '">More Info</a> ';
         
-            echo $values->details . '</br>';
-            
-            echo '</div>';
+            echo '<p>' . $values->details . '</p>';
+            echo '<a target="blank" class="more" href=" ' . ($values->links->article) . '">More Info</a> ';
+
+            echo '</div></div>';
           }
                
  

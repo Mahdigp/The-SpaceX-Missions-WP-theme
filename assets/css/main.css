@@ -95,13 +95,26 @@ body {
     font-family: "open sans", tahoma, arial; }
   body a {
     text-decoration: none; }
+  body .more {
+    background: #426795;
+    color: #fff;
+    padding: 5px 8px;
+    border-radius: 5px; }
   body .container {
     width: 1170px;
     margin: auto;
     display: block; }
   body .row {
     display: flex;
-    flex-wrap: wrap; }
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between; }
+  body .col-5 {
+    flex-basis: 50%; }
+  body .col-10 {
+    flex-basis: 100%; }
+  body .col-3 {
+    flex-basis: 33%; }
   body header {
     margin-top: 10px; }
     body header #primary-menu ul {
@@ -129,7 +142,7 @@ body {
       body header .site-branding * {
         color: #fff; }
   body main#primary {
-    background: #fcfcfc;
+    background: #efefef;
     padding: 5px;
     border-radius: 5px;
     border: 1px solid #e3e3e3;
@@ -141,5 +154,28 @@ body {
     border-radius: 10px; }
     body .site-info * {
       color: #3f3f3f; }
+  body .history-mission {
+    margin: 5px;
+    background: #fff;
+    padding: 15px;
+    box-shadow: 0 0 17px 4px #ccc;
+    border-radius: 2px;
+    height: 180px; }
+    body .history-mission h2 {
+      margin-bottom: 0;
+      margin-top: 5px;
+      border-bottom: 1px solid #ccc; }
+    body .history-mission p {
+      height: 60px;
+      overflow-y: auto; }
+      body .history-mission p ::-webkit-scrollbar-button {
+        display: none; }
+    body .history-mission .date, body .history-mission .time {
+      background: #ccc;
+      color: #6a6a6abb;
+      margin-right: 5px;
+      padding: 1px;
+      border-radius: 2px;
+      font-size: 12px; }
 
 /*# sourceMappingURL=main.css.map */

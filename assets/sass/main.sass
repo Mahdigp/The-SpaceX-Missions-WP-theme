@@ -133,7 +133,11 @@ body
         font-family: 'open sans',tahoma,arial
     a 
         text-decoration: none
-
+    .more
+        background: #426795
+        color: #fff
+        padding: 5px 8px
+        border-radius: 5px
     // ------- Layout ------- // 
 
     .container
@@ -143,7 +147,14 @@ body
     .row
         display: flex
         flex-wrap: wrap
-
+        flex-direction: row
+        justify-content: space-between
+    .col-5
+        flex-basis: 50%
+    .col-10
+        flex-basis: 100%
+    .col-3
+        flex-basis: 33%
 
     // ------- Header ------- // 
     header 
@@ -177,7 +188,7 @@ body
                 color: #fff
     // ------- Main content ------- //     
     main#primary
-        background: #fcfcfc
+        background: #efefef
         padding: 5px
         border-radius: 5px
         border: 1px solid #e3e3e3
@@ -191,3 +202,28 @@ body
         border-radius: 10px
         * 
             color: #3f3f3f
+
+    // ------- History Page ------- //   
+    .history-mission
+        margin: 5px
+        background: #fff
+        padding: 15px
+        box-shadow: 0 0 17px 4px #ccc
+        border-radius: 2px
+        height: 180px
+        h2 
+            margin-bottom: 0
+            margin-top: 5px
+            border-bottom: 1px solid #ccc
+        p 
+            height: 60px
+            overflow-y: auto
+            ::-webkit-scrollbar-button
+                display: none
+        .date, .time
+            background: #ccc
+            color: #6a6a6abb
+            margin-right: 5px
+            padding: 1px
+            border-radius: 2px
+            font-size: 12px

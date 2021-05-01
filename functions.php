@@ -75,7 +75,7 @@ add_action( 'init', 'lunches_post_type', 0 );
 
 
 
-/* register custom feild */
+/* register custom feild
 
 if( function_exists('acf_add_local_field_group') ):
 
@@ -156,7 +156,7 @@ if( function_exists('acf_add_local_field_group') ):
 		),
 	));
 	
-	endif;
+	endif;*/
 
 
 	add_action('after_switch_theme', 'setup_theme_options');
@@ -207,6 +207,7 @@ if( function_exists('acf_add_local_field_group') ):
 		$result=json_decode($result);
 		
 		foreach ($result as $values) {
+
 			$date=$values->launch_date_unix;
 			$tdate=date('m/d/Y h:i:s a',$date);
 			$missionName=$values->mission_name;
@@ -228,10 +229,23 @@ if( function_exists('acf_add_local_field_group') ):
 				'post_title' => $missionName,
 				);
 		
+				
+				$post_id = wp_insert_post($new_post);
+				add_post_meta($post_id, 'nationality', $nationality); 
+				add_post_meta($post_id, 'payloadtype', $payload_type); 
+				add_post_meta($post_id, 'details', $details); 
+
+				add_post_meta($post_id, 'manufacturer', $manufacturer); 
+				add_post_meta($post_id, 'picture', $picture); 
+				add_post_meta($post_id, 'launch_success', $launch_success); 
+				add_post_meta($post_id, 'article_link', $article_link); 
+				add_post_meta($post_id, 'video_link', $video_link); 
+				add_post_meta($post_id, 'tdate', $tdate); 
+
+
+			/*
 		
-			
 		
-			$post_id = wp_insert_post($new_post);
 			update_field('nationality', $nationality ,$post_id);
 			update_field('payloadtype', $payload_type ,$post_id);
 			update_field('details', $details ,$post_id);
@@ -242,7 +256,7 @@ if( function_exists('acf_add_local_field_group') ):
 			update_field('video_link', $video_link ,$post_id);
 			update_field('tdate', $tdate ,$post_id);
 		
-		
+		*/
 		
 		}
 		
@@ -405,10 +419,4 @@ require get_template_directory() . '/inc/customizer.php';
  */
 if ( defined( 'JETPACK__VERSION' ) ) {
 	require get_template_directory() . '/inc/jetpack.php';
-}
-add_action( 'admin_notices', 'my_theme_dependencies' );
-
-function my_theme_dependencies() {
-  if( ! function_exists('plugin_function') )
-    echo '<div class="notice"><p>' . __( ' The Theme needs Advand Custom Field to function', 'my-theme' ) . '</p></div>';
 }

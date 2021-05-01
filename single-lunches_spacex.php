@@ -26,25 +26,31 @@ get_header();
                 <div class="row">
 
                 <?php 
-    query_posts(array( 
-        'post_type' => 'lunches_spacex',
-        'showposts' => -1 
-    ) );  
+$post_id = get_the_ID();
+$tdate = get_post_meta($post_id , 'tdate', true);
+$nationality = get_post_meta($post_id , 'nationality', true);
+$details = get_post_meta($post_id , 'details', true);
+$manufacturer = get_post_meta($post_id , 'manufacturer', true);
+$payloadtype = get_post_meta($post_id , 'payloadtype', true);
+$picture = get_post_meta($post_id , 'picture', true);
+$article_link = get_post_meta($post_id , 'article_link', true);
+$video_link = get_post_meta($post_id , 'video_link', true);
+
 ?>
 
 
 <div class="col-10">
 <div class="lunch">
         <h3><a href="<?php the_permalink() ?>"><?php the_title(); ?></a></h3>
-        <span class="tdate">Time and date: <?php  the_field('tdate'); ?> </span>
-        <span class="nationality">Nationality: <?php  the_field('nationality'); ?> </span>
-        <span>Manufacturer: <?php  the_field('manufacturer'); ?>  </span>
-        <span> <a  target="_blank" href=" <?php  the_field('picture'); ?> "> See Photo </a> </span>
-        <span>Payload type: <?php  the_field('payloadtype'); ?> </span>
-        <span> <a  target="_blank" href=" <?php  the_field('article_link'); ?> "> Read Article </a> </span>
-        <span> <a  target="_blank" href=" <?php  the_field('video_link'); ?> "> Watch Video </a> </span>
+        <span class="tdate">Time and date: <?php echo $tdate ?>  </span>
+        <span class="nationality">Nationality: <?php echo $nationality ?> </span>
+        <span>Manufacturer: <?php echo $manufacturer ?>  </span>
+        <span> <a  target="_blank" href=" <?php echo $picture ?> "> See Mission Patch </a> </span>
+        <span>Payload type: <?php echo $payloadtype ?>  </span>
+        <span> <a  target="_blank" href=" <?php echo $article_link ?>  "> Read Article </a> </span>
+        <span> <a  target="_blank" href="<?php echo $video_link ?>> "> Watch Video </a> </span>
 
-        <p> <?php  the_field('details'); ?></p>
+        <p> <?php echo $details ?> </p>
     
   
 

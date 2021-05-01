@@ -75,89 +75,6 @@ add_action( 'init', 'lunches_post_type', 0 );
 
 
 
-/* register custom feild
-
-if( function_exists('acf_add_local_field_group') ):
-
-	acf_add_local_field_group(array(
-		'key' => 'Luncher_Properties',
-		'title' => 'Luncher Properties',
-		'fields' => array (
-			array (
-				'key' => 'nationality',
-				'label' => 'Nationality',
-				'name' => 'nationality',
-				'type' => 'text',
-			),
-			array (
-				'key' => 'details',
-				'label' => 'Details',
-				'name' => 'details',
-				'type' => 'text',
-			),
-			array (
-				'key' => 'manufacturer',
-				'label' => 'Manufacturer',
-				'name' => 'manufacturer',
-				'type' => 'text',
-			)
-			,
-			array (
-				'key' => 'picture',
-				'label' => 'Picture Url',
-				'name' => 'picture',
-				'type' => 'text',
-			)
-			,
-			array (
-				'key' => 'payloadtype',
-				'label' => 'Payload type',
-				'name' => 'payloadtype',
-				'type' => 'text',
-			)
-			,
-			array (
-				'key' => 'launch_success',
-				'label' => 'Launch Success',
-				'name' => 'launch_success',
-				'type' => 'true_false',
-	
-			),
-			array (
-				'key' => 'article_link',
-				'label' => 'Article Link',
-				'name' => 'article_link',
-				'type' => 'text',
-	
-			),
-			array (
-				'key' => 'video_link',
-				'label' => 'Video link',
-				'name' => 'video_link',
-				'type' => 'text',
-	
-			),
-			array (
-				'key' => 'tdate',
-				'label' => 'Time and Date',
-				'name' => 'tdate',
-				'type' => 'text',
-	
-			)
-		),
-		'location' => array (
-			array (
-				array (
-					'param' => 'post_type',
-					'operator' => '==',
-					'value' => 'lunches_spacex',
-				),
-			),
-		),
-	));
-	
-	endif;*/
-
 
 	add_action('after_switch_theme', 'setup_theme_options');
 
@@ -243,20 +160,6 @@ if( function_exists('acf_add_local_field_group') ):
 				add_post_meta($post_id, 'tdate', $tdate); 
 
 
-			/*
-		
-		
-			update_field('nationality', $nationality ,$post_id);
-			update_field('payloadtype', $payload_type ,$post_id);
-			update_field('details', $details ,$post_id);
-			update_field('manufacturer', $manufacturer ,$post_id);
-			update_field('picture', $picture ,$post_id);
-			update_field('launch_success', $launch_success ,$post_id);
-			update_field('article_link', $article_link ,$post_id);
-			update_field('video_link', $video_link ,$post_id);
-			update_field('tdate', $tdate ,$post_id);
-		
-		*/
 		
 		}
 		
